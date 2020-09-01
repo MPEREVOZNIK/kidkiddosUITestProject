@@ -13,20 +13,15 @@ public class MainPageTest extends UseCaseBase {
     private static MainPage mainPage;
     private static ContactUsPage contactUs;
     private static LoginPage loginPage;
+    private static SignUpPage signUpPage;
     private static final Logger Logger = LogManager.getLogger(MainPageTest.class);
 
     @BeforeAll
     public static void classSetup() {
         mainPage = new MainPage();
-
         contactUs = new ContactUsPage();
-    }
-//    public static void classSetup2() {
-//        contactUs = new ContactUsPage();
-//    }
-
-    public static void classSetup3() {
         loginPage = new LoginPage();
+        signUpPage = new SignUpPage();
     }
 
     @BeforeEach
@@ -203,7 +198,6 @@ public class MainPageTest extends UseCaseBase {
 
     @Test
     public void emptyNameTextBox() {
-//      ContactUsPage contactUsPage =mainPage.openContactUsTab();
         ContactUsPage contactUsPage2 = contactUs.fillContactUsForm(" ", "m.perevoznik@gmail.com", "Hello ");
         boolean isDisplayed = contactUsPage2.isNameErrorVisible();
         mainPage.takeScreenshot("Contact Us Page/ Error message for Name text box");
@@ -220,15 +214,15 @@ public class MainPageTest extends UseCaseBase {
 
     @Test
     public void emptyMsgTextBox() {
-        ContactUsPage contactUsPage = mainPage.fillContactUsForm("M", " m.perev@gmail.com", " ");
+        ContactUsPage contactUsPage = contactUs.fillContactUsForm("M", " m.perev@gmail.com", " ");
         boolean isDisplayed = contactUsPage.isMessageErrorVisible();
-        mainPage.takeScreenshot("Contact Us Page/ Error message for empty Message");
+        contactUs.takeScreenshot("Contact Us Page/ Error message for empty Message");
         assertTrue(isDisplayed);
     }
 
     @Test
     public void invalidEmail() {
-        ContactUsPage contactUsPage = mainPage.fillContactUsForm("M", "m.perev@", "Hello");
+        ContactUsPage contactUsPage = contactUs.fillContactUsForm("M", "m.perev@", "Hello");
         boolean isDisplayed = contactUsPage.isEmailErrorVisible();
         mainPage.takeScreenshot("Contact Us Page/ Error message for invalid Email");
         assertTrue(isDisplayed);
@@ -236,26 +230,37 @@ public class MainPageTest extends UseCaseBase {
 
     @Test
     public void NameEdgeTest() {
-        contactUs = new ContactUsPage();
-        ContactUsPage contactUsPage = mainPage.fillContactUsForm("#$@", "m.perev@gmail.com", "Hello");
+        ContactUsPage contactUsPage = contactUs.fillContactUsForm("#$@", "m.perev@gmail.com", "Hello");
         boolean isDisplayed = contactUsPage.isThankYouMsgVisible();
-        mainPage.takeScreenshot("Contact Us page/Thank you message");
-        assertTrue(isDisplayed);
-
-    }
-
-    @Test
-    public void SignInError() {
-        loginPage.fillInCredentials(" ", "123456");
-        LoginPage loginPage = new LoginPage();
-        boolean isDisplayed = loginPage.isErrorVisible();
+        contactUs.takeScreenshot("Contact Us page/Thank you message");
         assertTrue(isDisplayed);
     }
 
     @Test
-    public void openRecoverPasswordPage() {
-        LoginPage loginPage1 = loginPage.openRecoverPswPage();
-        boolean isDisplayed = loginPage1.isRecoverPswVisible();
+    public void checkSubmitAccountPage() {
+        SignUpPage signUpPage1 = signUpPage.fillSignUpForm("M", "P", "m.pe24rev@gmail.com", "1234567");
+        boolean isDisplayed = signUpPage1.isSubmitBtnVisible();
         assertTrue(isDisplayed);
+    }
+
+    @Test
+    public void openCart() {
+        MainPage mainPage1 = mainPage.openCart();
+        boolean isVisible = mainPage1.isMyCartTitleVisible();
+        assertTrue(isVisible);
+    }
+
+    @Test
+    public void selectAudCurrency() {
+        MainPage mainPage1 = mainPage.selectAudCurrency();
+        boolean isSelected = mainPage1.isAUDCurrencySelected();
+        assertTrue(isSelected);
+    }
+
+    @Test
+    public void selectUsdCurrency() {
+        MainPage mainPage1 = mainPage.selectUsdCurrency();
+        boolean isSelected = mainPage1.isUsdCurrencySelected();
+        assertTrue(isSelected);
     }
 }

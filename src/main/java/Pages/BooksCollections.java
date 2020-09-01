@@ -6,9 +6,9 @@ public class BooksCollections extends BasePage {
     public static final String BULGARIAN_HEADER = "//h1[text()='Bulgarian-Български']";
     public static final String BULGARIAN = "//a[text()='Bulgarian-Български']";
     public static final String EBOOKS_ARABIC_PAGE_HEADER = "//h1[text()='eBooks in Arabic - عربي']";
-    public static final String EBOOKS_ARABIC = "//li[text()='Arabic - عربي']";
+    public static final String EBOOKS_ARABIC = "(//a[contains(text(),'Arabic')])[5]";
     public static final String EBOOKS_POLISH_PAGE_HEADER = "//h1[text()='eBooks in Polish-Polski']";
-    public static final String EBOOKS_POLISH = "//*[@id=\"SiteNavLabel-ebooks-by-language\"]/ul/li[18]/a";
+    public static final String EBOOKS_POLISH = "(//a[contains(text(),'Polish')])[5]";
     public static final String FRENCH_BOOKS_HEADER = "//h1[text()='French - Français']";
     public static final String MANDARIN_BOOKS_HEADER = "//h1[text()='Mandarin Chinese - 中文']";
     public static final String SPANISH_BOOKS_HEADER = "//h1[text()='Spanish - Español']";

@@ -9,7 +9,7 @@ public class ContactUsPage extends BasePage {
     public static final String MSG_TEXTBOX = "//textarea[@data-name='your_message']";
     public static final String CONTACT_US_OPTION = "//a[text()='Contact us']";
     public static final String CONTACT_US_HEADER = "//h1[text()='Contact us']";
-    public static final String THANK_YOU_BANNER = "//*[contains(text(),'Thank You')]";
+    public static final String THANK_YOU_BANNER = "//*[@class='_form-thank-you']";
     public static final String ERROR_NAME_BOX = "//*[contains(text(),'This field is required')]";
     public static final String ERROR_EMAIL_BOX = "//*[contains(text(),'This field is required')]";
     public static final String ERROR_MESSAGE_BOX = "//*[contains(text(),'This field is required')]";
@@ -51,49 +51,5 @@ public class ContactUsPage extends BasePage {
         clickElementByXpath(SEND_MSG_BUTTON);
         return new ContactUsPage();
 
-
-
     }
-//    public ContactUsPage emptyNameTextBox() {
-//        clickElementByXpath(CONTACT_US_OPTION);
-//        sendTextToElementByXpath(NAME_TEXTBOX, " ");
-//        clickElementByXpath(SEND_MSG_BUTTON);
-//        return new ContactUsPage();
-//
-//    }
-//
-//    public ContactUsPage emptyEmailTextBox() {
-//        clickElementByXpath(CONTACT_US_OPTION);
-//        sendTextToElementByXpath(NAME_TEXTBOX, "Maria");
-//        sendTextToElementByXpath(EMAIL_TEXTBOX, " ");
-//        sendTextToElementByXpath(MSG_TEXTBOX, "Hello!");
-//        clickElementByXpath(SEND_MSG_BUTTON);
-//        return new ContactUsPage();
-//    }
-//
-//    public ContactUsPage emptyMsgTextBox() {
-//        clickElementByXpath(CONTACT_US_OPTION);
-//        sendTextToElementByXpath(NAME_TEXTBOX, "Maria");
-//        sendTextToElementByXpath(EMAIL_TEXTBOX, "m.perev@gmail.com");
-//        sendTextToElementByXpath(MSG_TEXTBOX, " ");
-//        clickElementByXpath(SEND_MSG_BUTTON);
-//        return new ContactUsPage();
-//    }
-//
-//    public ContactUsPage invalidEmail() {
-//        clickElementByXpath(CONTACT_US_OPTION);
-//        sendTextToElementByXpath(NAME_TEXTBOX, "Maria");
-//        sendTextToElementByXpath(EMAIL_TEXTBOX, "m.perev");
-//        sendTextToElementByXpath(MSG_TEXTBOX, "Hello!");
-//        clickElementByXpath(SEND_MSG_BUTTON);
-//        return new ContactUsPage();
-//    }
-//    public ContactUsPage specialCharsNameTextBox(){
-//        clickElementByXpath(CONTACT_US_OPTION);
-//        sendTextToElementByXpath(NAME_TEXTBOX,"#$@");
-//        sendTextToElementByXpath(EMAIL_TEXTBOX, "m.perev@gmail.com");
-//        sendTextToElementByXpath(MSG_TEXTBOX, "Hello!");
-//        clickElementByXpath(SEND_MSG_BUTTON);
-//        return new ContactUsPage();
-//    }
 }

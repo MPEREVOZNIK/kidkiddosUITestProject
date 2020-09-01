@@ -17,7 +17,7 @@ public class BasePage {
 
     public void setWebDriver(WebDriver webDriver){
         this.webDriver = webDriver;
-        wait = new WebDriverWait(webDriver,9);
+        wait = new WebDriverWait(webDriver,12);
     }
     protected void clickElementByXpath(String xpath){
         Logger.info("Element is clicked with xpath: " + xpath);

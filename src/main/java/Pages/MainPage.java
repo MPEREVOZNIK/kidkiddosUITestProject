@@ -6,21 +6,22 @@ public class MainPage extends BasePage {
     private final String LOGO_IMG = "//img[@itemprop='logo']";
     private final String CONTACT_US_OPTION = "//a[text()='Contact us']";
     private final String HOME_OPTION = "//a[text()='Home']";
-    private final String BOOKS_BY_LANGUAGE = "//*[@id=\"SiteNav\"]/li[2]/a";
-    private final String EBOOKS_BY_LANGUAGE = "//*[@id=\"SiteNav\"]/li[3]/a";
+    private final String BOOKS_BY_LANGUAGE = "(//*[@class='site-nav__link site-nav__link--main'])[2]";
+    private final String EBOOKS_BY_LANGUAGE = "(//*[@class='site-nav__link site-nav__link--main'])[3]";
     private final String ESPANOL_OPTION = "//a[text()='Español']";
     private final String FRANCAIS_OPTION = "//a[text()='Français']";
     private final String CHINESE_OPTION = "//a[text()='中文']";
-    private final String ALL_LANGUAGE_OPTION = "//a[text()='All Languages']";
-    private final String RESOURCES_OPTION = "//a[text()='Resources']";
-    private final String FAQS_OPTION = "//a[text()='FAQS']";
-    private final String BLOG_OPTION = "//a[text()='Blog']";
-//    private final String NAME_TEXTBOX = "//*[@id=\"_form_44_\"]/div[1]/div[1]/div/input";
-//    private final String EMAIL_TEXTBOX = "//*[@id=\"_form_44_\"]/div[1]/div[2]/div/input";
-//    private final String MSG_TEXTBOX = "//*[@id=\"_form_44_\"]/div[1]/div[3]/div/textarea";
-    private final String BULGARIAN = "//a[text()='Bulgarian-Български']";
-
-    private final String SEND_MSG_BUTTON = "//button[text()='Send your message']";
+    private final String ALL_LANGUAGE_OPTION = "(//*[@class='site-nav__link site-nav__link--main'])[7]";
+    private final String RESOURCES_OPTION = "(//*[@class='site-nav__link site-nav__link--main'])[8]";
+    private final String FAQS_OPTION = "(//*[@class='site-nav__link site-nav__link--main'])[9]";
+    private final String BLOG_OPTION = "(//*[@class='site-nav__link site-nav__link--main'])[11]";
+    private final String BULGARIAN_OPTION = "//*[@id=\"SiteNavLabel-all-languages\"]/ul/li[2]/a";
+    private final String FRENCH_OPTION = "//*[@id=\"SiteNavLabel-all-languages\"]/ul/li[7]/a";
+    private final String CART_ICON = "//*[@class='icon icon-cart']";
+    private final String CART_TITLE = "//h1[text()='Your cart']";
+    private final String CURRENCY_BUTTON = "//*[@class='cbb-currency-updown-icon']";
+    private final String AUD_CURRENCY = "(//span[text()='AUD'])[2]";
+    private final String USD_CURRENCY = "(//span[text()='USD'])[2]";
 
 
     public void navigateToMainPage() {
@@ -48,6 +49,7 @@ public class MainPage extends BasePage {
         clickElementByXpath(langXpath);
         return new BooksCollections();
     }
+
     public BooksCollections openEbooksCatalog(String langXpath) {
         clickElementByXpath(EBOOKS_BY_LANGUAGE);
         clickElementByXpath(langXpath);
@@ -91,13 +93,13 @@ public class MainPage extends BasePage {
 
     public BooksCollections openBulgarianBooks() {
         clickElementByXpath(ALL_LANGUAGE_OPTION);
-        clickElementByXpath("//*[@id=\"SiteNavLabel-all-languages\"]/ul/li[2]/a");
+        clickElementByXpath(BULGARIAN_OPTION);
         return new BooksCollections();
     }
 
     public BooksCollections openFrenchBooks() {
         clickElementByXpath(ALL_LANGUAGE_OPTION);
-        clickElementByXpath("//*[@id=\"SiteNavLabel-all-languages\"]/ul/li[7]/a");
+        clickElementByXpath(FRENCH_OPTION);
         return new BooksCollections();
     }
 
@@ -130,20 +132,37 @@ public class MainPage extends BasePage {
         clickElementByXpath(BLOG_OPTION);
         return new BlogPage();
     }
-    public ContactUsPage fillContactUsForm(String name, String email, String message){
 
-//        clickElementByXpath(CONTACT_US_OPTION);
-//
-//        sendTextToElementByXpath(NAME_TEXTBOX, name);
-//
-//        sendTextToElementByXpath(EMAIL_TEXTBOX, email);
-//
-//        sendTextToElementByXpath(MSG_TEXTBOX, message);
-//
-//        clickElementByXpath(SEND_MSG_BUTTON);
+    public MainPage openCart() {
+        clickElementByXpath(CART_ICON);
+        return new MainPage();
+    }
 
-        return new ContactUsPage();
+    public boolean isMyCartTitleVisible() {
+        boolean isVisible = elementExists(CART_TITLE);
+        return isVisible;
+    }
 
+    public MainPage selectAudCurrency() {
+        clickElementByXpath(CURRENCY_BUTTON);
+        clickElementByXpath(AUD_CURRENCY);
+        return new MainPage();
+    }
+
+    public boolean isAUDCurrencySelected() {
+        boolean isSelected = elementExists(AUD_CURRENCY);
+        return isSelected;
+    }
+
+    public MainPage selectUsdCurrency() {
+        clickElementByXpath(CURRENCY_BUTTON);
+        clickElementByXpath(USD_CURRENCY);
+        return new MainPage();
+    }
+
+    public boolean isUsdCurrencySelected() {
+        boolean isSelected = elementExists(USD_CURRENCY);
+        return isSelected;
     }
 
 }
