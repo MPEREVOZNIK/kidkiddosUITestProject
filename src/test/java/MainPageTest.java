@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static Pages.BooksCollections.*;
+import static Pages.MainPage.*;
+import static Pages.MainPage.ENGLISH;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainPageTest extends UseCaseBase {
@@ -262,5 +264,56 @@ public class MainPageTest extends UseCaseBase {
         MainPage mainPage1 = mainPage.selectUsdCurrency();
         boolean isSelected = mainPage1.isUsdCurrencySelected();
         assertTrue(isSelected);
+    }
+
+    @Test
+    public void addOneBookToCart() {
+        mainPage.openCatalog(ENGLISH);
+        MainPage mainPage1 = mainPage.addOneBookToCart(BOOK1);
+        boolean isBookAdded = mainPage1.isBookTitleVisible(BOOK1_CART_ITEM);
+        boolean isPriceVisible = mainPage1.isPriceVisibleInCart();
+        boolean isQtyVisible = mainPage1.isQuantityVisibleInCart();
+        assertTrue(isBookAdded);
+        assertTrue(isPriceVisible);
+        assertTrue(isQtyVisible);
+    }
+
+    @Test
+    public void addEnglishBooksToCart() {
+        mainPage.openCatalog(ENGLISH);
+        MainPage mainPage1 = mainPage.addManyBooksToCart(BOOK2);
+        boolean isBook2Added = mainPage1.isBookTitleVisible(BOOK2_CART_ITEM);
+        boolean isPriceVisible = mainPage1.isPriceVisibleInCart();
+        boolean isQtyVisible = mainPage1.isQuantityVisibleInCart();
+        assertTrue(isBook2Added);
+        assertTrue(isPriceVisible);
+        assertTrue(isQtyVisible);
+
+    }
+
+    @Test
+    public void addBulgBooksToCart() {
+        mainPage.openCatalog(BULGARIAN);
+        MainPage mainPage1 = mainPage.addManyBooksToCart(BOOK3);
+        boolean isBook2Added = mainPage1.isBookTitleVisible(BOOK3_CART_ITEM);
+        boolean isPriceVisible = mainPage1.isPriceVisibleInCart();
+        boolean isQtyVisible = mainPage1.isQuantityVisibleInCart();
+        assertTrue(isBook2Added);
+        assertTrue(isPriceVisible);
+        assertTrue(isQtyVisible);
+
+    }
+
+    @Test
+    public void addTurkBooksToCart() {
+        mainPage.openCatalog(TURKISH);
+        MainPage mainPage1 = mainPage.addManyBooksToCart(BOOK4);
+        boolean isBook2Added = mainPage1.isBookTitleVisible(BOOK4_CART_ITEM);
+        boolean isPriceVisible = mainPage1.isPriceVisibleInCart();
+        boolean isQtyVisible = mainPage1.isQuantityVisibleInCart();
+        assertTrue(isBook2Added);
+        assertTrue(isPriceVisible);
+        assertTrue(isQtyVisible);
+
     }
 }
